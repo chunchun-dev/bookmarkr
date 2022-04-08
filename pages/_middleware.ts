@@ -4,7 +4,7 @@ import { NextResponse } from "next/server"
 
 export async function middleware(req: NextApiRequest) {
     // return early if url isn't supposed to be protected
-    if (!req.url.includes("/protected")) {
+    if (!req?.url?.includes("/protected")) {
         return NextResponse.next()
     }
 
