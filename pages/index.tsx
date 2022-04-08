@@ -1,8 +1,9 @@
 import type { NextPage } from 'next'
+import AuthButton from '../components/auth/AuthButton'
 
 const Home: NextPage = () => {
   return (
-    <div>setup</div>
+    <AuthButton/>
   )
 }
 
