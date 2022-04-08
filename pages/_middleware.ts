@@ -2,7 +2,12 @@ import { NextApiRequest } from "next"
 import { getToken } from "next-auth/jwt"
 import { NextRequest, NextResponse } from "next/server"
 
-export async function middleware(req: NextRequest) {
+interface AuthNextApiRequest extends NextApiRequest {
+    url: string,
+    nextUrl: string
+}
+
+export async function middleware(req: AuthNextApiRequest) {
     // return early if url isn't supposed to be protected
     if (process.env.NODE_ENV === "production") {
         if (!req?.url?.includes("/protected")) {
