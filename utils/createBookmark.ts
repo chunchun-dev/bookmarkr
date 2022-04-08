@@ -2,7 +2,20 @@ import db from "../db/db"
 
 type createBookmarkType = (title: string, image: string, url: string, owner: string) => Promise<any>
 
-const createBookmark: createBookmarkType = async (title,image, url, owner): Promise<any> => {
+interface Bookmark {
+  id: string,
+  image: string,
+  title: string,
+  url: string,
+  owner: string
+}
+
+interface createBookmarkReturnType {
+  success: boolean,
+  bookmark: Bookmark | null
+}
+
+const createBookmark: createBookmarkType = async (title,image, url, owner): Promise<createBookmarkReturnType> => {
   
   try {
     const bookmark = await db.bookmark.create({
