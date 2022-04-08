@@ -1,8 +1,8 @@
 import { NextApiRequest } from "next"
 import { getToken } from "next-auth/jwt"
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
-export async function middleware(req: NextApiRequest) {
+export async function middleware(req: NextRequest) {
     // return early if url isn't supposed to be protected
     if (!req?.url?.includes("/protected")) {
         return NextResponse.next()
@@ -10,7 +10,9 @@ export async function middleware(req: NextApiRequest) {
 
     const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
 
-    if (!session) return NextResponse.redirect("/api/auth/signin")
+    const url = req.nextUrl.clone()
+    url.pathname = '/api/auth/signin'
+    if (!session) return NextResponse.redirect(url)
 
     return NextResponse.next()
 }
