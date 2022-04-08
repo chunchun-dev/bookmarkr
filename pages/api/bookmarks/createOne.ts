@@ -1,10 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import db from '../../../db/db'
-import createBookmark from '../../../utils/createBookmark'
+import createBookmark, {createBookmarkReturnType} from '../../../utils/createBookmark'
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<any>
+  res: NextApiResponse<createBookmarkReturnType>
 ) {
   const {title,image,url,owner} = req.body 
 
