@@ -1,7 +1,7 @@
 import db from "../db/db"
 import {Bookmark} from '../shared/types/Bookmark'
 
-type createBookmarkType = (title: string, image: string, url: string, owner: string) => Promise<createBookmarkReturnType>
+type createBookmarkType = (title: string, image: string, url: string, owner: any) => Promise<createBookmarkReturnType>
 
 export interface createBookmarkReturnType {
   success: boolean,

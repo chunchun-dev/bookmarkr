@@ -5,9 +5,10 @@ function AuthButton() {
     const { data: session } = useSession()
 
     if (session) {
+      console.log(session)
       return (
         <>
-          Signed in as {session?.user?.email} <br />
+          Signed in as {session?.user?.id} <br />
           <button onClick={() => signOut()}>Sign out</button>
         </>
       )
